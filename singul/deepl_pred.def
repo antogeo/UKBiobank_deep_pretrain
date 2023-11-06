@@ -6,7 +6,6 @@ Stage: base
 # requirements.txt  /tmp/
 # brain_age/          /tmp/
 # dp_model/           /tmp/
-/data/project/BrainAge4AD/codes/brainage4ad/UKBiobank_deep_pretrain/singul/predict_subj_age.py /tmp
 
 %post
 # pip install -r /tmp/requirements.txt
@@ -16,8 +15,7 @@ mkdir -p dp
 apt-get -y update && apt-get install -y unzip wget
 
 cd dp
-cp /tmp/data/predict_subj_age.py .
-wget https://github.com/ha-ha-ha-han/UKBiobank_deep_pretrain/archive/refs/heads/master.zip
+wget https://github.com/antogeo/UKBiobank_deep_pretrain/archive/refs/heads/master.zip
 unzip master.zip
 rm -rf master.zip
 
@@ -25,7 +23,7 @@ rm -rf master.zip
 export PYTHONPATH=${PYTHONPATH}:/dp/UKBiobank_deep_pretrain-master
 
 %runscript
-exec /bin/bash python dp/predict_subj_age.py "$@"
+exec /bin/bash python /dp/singul/predict_subj_age.py "$@"
 
 %help
 This def file builds a Singularity container with all requirements to run
